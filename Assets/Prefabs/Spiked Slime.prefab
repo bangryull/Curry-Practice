@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4867157769544679792}
   - component: {fileID: 1779417978724462777}
   - component: {fileID: 5707748104607716350}
+  - component: {fileID: 7854493284880545194}
   m_Layer: 0
   m_Name: Spiked Slime
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +124,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -175,3 +176,16 @@ CapsuleCollider2D:
   m_Offset: {x: -0.008511952, y: -0.9177606}
   m_Size: {x: 1.8598138, y: 1.3662232}
   m_Direction: 1
+--- !u!114 &7854493284880545194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323552705919381596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689af26260802744981225b4b19850a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 1000

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1395615591714628980}
   m_Layer: 0
   m_Name: Warrior
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4936742493987892471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7788781794069165335
@@ -127,7 +128,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 3.5
   m_Material: {fileID: 6200000, guid: 034a9af8d6ebf694daf53accd0957002, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -153,9 +154,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 724101283321712682}
   animator: {fileID: 7788781794069165335}
-  spriteRenderer: {fileID: 8360510151696287740}
   Speed: 4.5
-  isGround: 0
+  HP: 100
+  attackDamage: 3
+  attackDelay: 0.3
+  pos: {fileID: 4936742493987892471}
+  boxSize: {x: 0.7, y: 0.7}
 --- !u!61 &1395615591714628980
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202,3 +206,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.19920465, y: 0.75572515}
   m_EdgeRadius: 0
+--- !u!1 &8135525888141502060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4936742493987892471}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4936742493987892471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135525888141502060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.387, y: 0.009, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6158880838374860628}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
