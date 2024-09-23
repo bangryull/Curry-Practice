@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     public float HP = 100f;
 
     protected bool isGround;
-    protected float GroundCheck = 0f;
-    protected float JumpPower = 0f;
+    [SerializeField] protected float GroundCheck = 0f;
+    [SerializeField] protected float JumpPower = 0f;
 
     protected bool isFacingRight = true;
     [SerializeField]
@@ -26,7 +26,39 @@ public class Player : MonoBehaviour
 
     protected void Update()
     {
-        //move&facing code start
+        IsGroundReload();
+        Move();
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        {
+            animator.SetBool("jump", !isGround);
+            rigid.velocity = Vector2.zero;
+            rigid.AddForce(Vector2.up * JumpPower);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Attack();
+        }
+    }
+
+    private void IsGroundReload()
+    {
+        isGround = Physics2D.Raycast(transform.position, Vector2.down, GroundCheck, LayerMask.GetMask("Ground"));
+    }
+
+    public void Die()
+    {
+        if (animator.GetBool("death"))
+        {
+            animator.SetBool("death", true);
+        }
+        Destroy(gameObject);
+    }
+
+    private void Move()
+    {
+        
         float axis = Input.GetAxisRaw("Horizontal");
         float XSpeed = axis * Speed;
         rigid.velocity = new Vector2(XSpeed, rigid.velocity.y);
@@ -52,25 +84,9 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("run", false);
         }
-        //move&facing code end
-
-        //jump code start
-        isGround = Physics2D.Raycast(transform.position, Vector2.down, GroundCheck, LayerMask.GetMask("Ground"));
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
-        {
-            animator.SetBool("jump", !isGround);
-            rigid.velocity = Vector2.zero;
-            rigid.AddForce(Vector2.up * JumpPower);
-        }
-        //jump code end
     }
 
-    public void Die()
+    protected virtual void Attack()
     {
-        if (animator.GetBool("death"))
-        {
-            animator.SetBool("death", true);
-        }
-        Destroy(gameObject);
     }
 }
