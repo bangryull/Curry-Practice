@@ -101,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -155,10 +155,15 @@ MonoBehaviour:
   rigid: {fileID: 724101283321712682}
   animator: {fileID: 7788781794069165335}
   Speed: 4.5
+  MaxHP: 100
   HP: 100
   GroundCheck: 0.5
-  JumpPower: 600
+  JumpPower: 650
   Boss: {fileID: 0}
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  damagedDelay: 1
   attackDamage: 3
   attackDelay: 0.3
   pos: {fileID: 4936742493987892471}
@@ -219,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4936742493987892471}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AttackHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

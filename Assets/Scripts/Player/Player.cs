@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     public float Speed = 4.5f;
-    public float HP = 100f;
+    public float MaxHP = 100f;
+    public float HP;
 
     protected bool isGround;
     [SerializeField] protected float GroundCheck = 0f;
@@ -18,6 +20,10 @@ public class Player : MonoBehaviour
     protected bool isFacingRight = true;
     [SerializeField]
     protected Boss Boss;
+
+    public UnityEvent<float> onTakeDamage;
+    public float damagedDelay = 1f;
+    private bool canDamaged = true;
 
     protected void Start()
     {
@@ -31,9 +37,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
-            animator.SetBool("jump", !isGround);
-            rigid.velocity = Vector2.zero;
-            rigid.AddForce(Vector2.up * JumpPower);
+            Jump();
         }
         
         if (Input.GetKeyDown(KeyCode.J))
@@ -45,6 +49,27 @@ public class Player : MonoBehaviour
     private void IsGroundReload()
     {
         isGround = Physics2D.Raycast(transform.position, Vector2.down, GroundCheck, LayerMask.GetMask("Ground"));
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (canDamaged)
+        {
+            HP -= damage;
+            onTakeDamage.Invoke(damage);
+            canDamaged= false;
+            StartCoroutine(DamageDelayCheck());
+            if (HP <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private IEnumerator DamageDelayCheck()
+    {
+        yield return new WaitForSeconds(damagedDelay);
+        canDamaged = true;
     }
 
     public void Die()
@@ -84,6 +109,13 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("run", false);
         }
+    }
+
+    protected void Jump()
+    {
+        animator.SetBool("jump", !isGround);
+        rigid.velocity = Vector2.zero;
+        rigid.AddForce(Vector2.up * JumpPower);
     }
 
     protected virtual void Attack()

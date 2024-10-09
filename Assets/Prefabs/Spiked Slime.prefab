@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1031078412643536492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3657685184614183263
@@ -127,8 +128,8 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 2
+  m_Material: {fileID: 6200000, guid: c9a89d2cc36153649958a58f8e532572, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -138,7 +139,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &5707748104607716350
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -173,8 +174,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.008511952, y: -0.9177606}
-  m_Size: {x: 1.8598138, y: 1.3662232}
+  m_Offset: {x: -0.014319412, y: 0.07316334}
+  m_Size: {x: 1.7703011, y: 1.3992882}
   m_Direction: 1
 --- !u!114 &7854493284880545194
 MonoBehaviour:
@@ -188,4 +189,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689af26260802744981225b4b19850a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigid: {fileID: 1779417978724462777}
+  animator: {fileID: 4867157769544679792}
+  MaxHP: 1000
   HP: 1000
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  isGround: 0
+  GroundCheck: 0.8
+  JumpPower: 500
+  pos: {fileID: 1031078412643536492}
+  patternDelay: 3
+  currentPlatform: 2
+  jumptest: 250
+  jumpTime: 1.5
+--- !u!1 &6390742488393756928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1031078412643536492}
+  m_Layer: 0
+  m_Name: TestLine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1031078412643536492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6390742488393756928}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.21, y: 0.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1351096655977256699}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
