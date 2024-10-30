@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,6 +14,7 @@ public class Boss : MonoBehaviour
     public float HP;
 
     public UnityEvent<float> onTakeDamage;
+    public UnityEvent bossDie;
 
     public bool isGround;
     [SerializeField] protected float GroundCheck = 0f;
@@ -61,6 +63,8 @@ public class Boss : MonoBehaviour
 
     private void Die()
     {
+        bossDie.Invoke();
+        Destroy(gameObject);
         throw new System.NotImplementedException();
     }
 

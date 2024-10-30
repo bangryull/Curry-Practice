@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     protected Boss Boss;
 
     public UnityEvent<float> onTakeDamage;
+    public UnityEvent playerDie;
     public float damagedDelay = 1f;
     private bool canDamaged = true;
 
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("death", true);
         }
+        playerDie.Invoke();
         Destroy(gameObject);
     }
 
