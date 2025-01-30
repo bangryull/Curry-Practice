@@ -14,11 +14,13 @@ public class Slime : Boss
 
     [SerializeField]
     private float jumpTime;
-    private bool onJumping = false;
+
+    public bool onJumping = false;
 
     private void Start()
     {
         base.Start();
+        Physics2D.IgnoreCollision(col, player.GetComponent<Collider2D>());
         StartCoroutine(PatternDelay());
     }
 
@@ -31,7 +33,7 @@ public class Slime : Boss
         }
         else
         {
-            onJumping=false;
+            onJumping = false;
         }
     }
 
@@ -127,15 +129,6 @@ public class Slime : Boss
         }
         patternReady = true;
         nextPattern = true;
-    }
-
-    private void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Player" && onJumping)
-        {
-            Player player = col.gameObject.GetComponent<Player>();
-            player.TakeDamage(5f);
-        }
     }
 
     private void Jumping(Vector2 xDirection, float xPower, int target_platform)

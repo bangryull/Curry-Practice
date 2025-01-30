@@ -9,9 +9,12 @@ public class Boss : MonoBehaviour
 {
     public Rigidbody2D rigid;
     public Animator animator;
+    public Collider2D col;
 
     public float MaxHP = 1000f;
     public float HP;
+
+    public GameObject player;
 
     public UnityEvent<float> onTakeDamage;
     public UnityEvent bossDie;
@@ -24,9 +27,18 @@ public class Boss : MonoBehaviour
 
     public Transform pos;
 
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    public Color damageColor;
+    public float effectDuration = 0.1f;
+
     protected void Start()
     {
+        ColorUtility.TryParseHtmlString("#FF4949", out damageColor);
+        player = GameObject.FindWithTag("Player");
         HP = MaxHP;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
     protected void Update()
     {
@@ -46,6 +58,20 @@ public class Boss : MonoBehaviour
         {
             Die();
         }
+        else
+        {
+            StartCoroutine(DamageFlash());
+        }
+    }
+    private IEnumerator DamageFlash()
+    {
+        spriteRenderer.color = damageColor;
+        yield return new WaitForSeconds(effectDuration);
+        spriteRenderer.color = originalColor;
+        yield return new WaitForSeconds(effectDuration);
+        spriteRenderer.color = damageColor;
+        yield return new WaitForSeconds(effectDuration);
+        spriteRenderer.color = originalColor;
     }
 
     protected void FlipX()
